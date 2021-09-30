@@ -1,10 +1,24 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
     stages {
-        stage('Test') {
-            steps {
-                sh 'cat /etc/os-release'
-            }
+        stage('Git Checkout') {
+            git ''
         }
     }
 }
+
+/*
+node {
+    checkout scm
+
+    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+
+        def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
+}
+
+
+*/
