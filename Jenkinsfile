@@ -8,12 +8,14 @@ pipeline {
         }
         
         stage('Build Image'){
+            steps{
             
             docker.withRegistry('localhost:8080', 'dockerCred') {
 
                 def customImage = docker.build("python-app:${env.BUILD_ID}")
                 customImage.push()
 
+            }
             }   
         }
     }
