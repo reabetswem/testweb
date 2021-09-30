@@ -2,12 +2,14 @@ pipeline {
     agent any
     stages {
         stage('Git Checkout') {
-            git ''
+            steps{
+                checkout scm 
+            }
         }
     }
 }
 
-/*
+/**
 node {
     checkout scm
 
@@ -21,4 +23,4 @@ node {
 }
 
 
-*/
+**/
