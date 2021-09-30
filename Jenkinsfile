@@ -6,6 +6,19 @@ pipeline {
                 checkout scm 
             }
         }
+        
+        stage('Build Image'){
+            
+            docker.withRegistry('localhost', 'dockerCred') {
+
+                def customImage = docker.build("python-app:${env.BUILD_ID}")
+                customImage.push()
+
+        
+    }
+            
+            
+        }
     }
 }
 
