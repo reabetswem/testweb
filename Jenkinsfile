@@ -1,6 +1,6 @@
 pipeline {
-    agent any
-    tools {dockerTool  "docker" } 
+    agent { dockerfile true }
+    //tools {dockerTool  "docker" }
     stages {
         stage('Git Checkout') {
             steps{
