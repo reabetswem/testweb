@@ -3,20 +3,22 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps{
-                checkout scm 
+                checkout scm
             }
         }
-        
+
         stage('Build Image'){
             steps{
-            
-            docker.withRegistry('localhost:8080', 'dockerCred') {
+                    script{
 
-                def customImage = docker.build("python-app:${env.BUILD_ID}")
-                customImage.push()
+                      docker.withRegistry('localhost:8080', 'dockerCred') {
+                      def customImage = docker.build("simplepython-app:${env.BUILD_ID}")
+                      customImage.push()
+
+                    }
 
             }
-            }   
+            }
         }
     }
 }
@@ -29,7 +31,7 @@ node {
 
         def customImage = docker.build("my-image:${env.BUILD_ID}")
 
-        //Push the container to the custom Registry 
+        //Push the container to the custom Registry
         customImage.push()
     }
 }
