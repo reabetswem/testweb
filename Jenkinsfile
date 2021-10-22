@@ -11,7 +11,7 @@ pipeline {
             steps{
                     script{
 
-                      docker.withRegistry('reabetswem/rea-repo, 'dockerCred'){
+                      docker.withRegistry('reabetswem/rea-repo', 'dockerCred'){
                       def customImage = docker.build("simplepython-app:${env.BUILD_ID}")
                       customImage.push()
 
