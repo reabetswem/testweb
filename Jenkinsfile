@@ -1,6 +1,12 @@
 pipeline {
     agent { dockerfile true }
     stages {
+
+        stage('Initialize'){
+            def dockerHome = tool 'Docker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
+
         stage('Git Checkout') {
             steps{
                 checkout scm
